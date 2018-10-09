@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   <mapper namespace="com.aaa.Dao.GoodsDao">
+    <select id="queryAll" resultType="Map">
+select*from tb_Goods g join tb_Goods_Type t on g.typeId=t.typeId
+ </select>
+<select id="querytype" resultType="java.util.Map"> 
+ select * from tb_Goods_Type
+  </select>
+  <insert id="save" parameterType="tb_Goods">
+     insert into tb_Goods(goodsName,goodsDesc,goodsUnitPrice,goodsImageName,sellCount,goodsDate,typeId)
+     values(#{goodsName},#{goodsDesc},#{goodsUnitPrice},#{goodsImageName},#{sellCount},#{goodsDate},#{typeId})
+  </insert>
+ <delete id="delete" parameterType="Integer">
+	   delete from tb_Goods where goodsId=#{goodsId}
+	</delete>
+	<update id="update" parameterType="tb_Goods">
+	update tb_Goods set goodsName=#{goodsName},goodsDesc=#{goodsDesc},
+	goodsUnitPrice=#{goodsUnitPrice},goodsImageName=#{goodsImageName},
+	sellCount=#{sellCount},goodsDate=#{goodsDate},typeId=#{type.typeId} where goodsId=#{goodsId}
+	</update>
+	<select id="queryById" resultType="tb_Goods">
+	   select*from tb_Goods where goodsId=#{goodsId}
+	</select>
+   </mapper>
+   
+ 
